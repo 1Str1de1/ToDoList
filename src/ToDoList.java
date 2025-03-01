@@ -17,7 +17,17 @@ public class ToDoList {
 
         System.out.println("Введите название задачи. ");
 
-        Task task = new Task(input.getCommand(), taskList.size() + 1);
+        String newTask = input.getCommand();
+
+        for (Task tasks: taskList) {
+
+            if (newTask.equals(tasks.getTaskName())) {
+                System.out.println("Задача с таким названием уже существует!");
+                return;
+            }
+        }
+
+        Task task = new Task(newTask, taskList.size() + 1);
 
         taskList.add(task);
 
