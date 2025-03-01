@@ -19,6 +19,7 @@ public class ToDoList {
 
         String newTask = input.getCommand();
 
+        // Валидация на аналогичное название задачи(без учёта регистра)
         for (Task tasks: taskList) {
 
             if (newTask.equals(tasks.getTaskName())) {
@@ -40,6 +41,7 @@ public class ToDoList {
 
         Integer taskNumber = input.getIndex();
 
+        //Проверка наличия числа в списке задач
         if (taskNumber < 0 || taskNumber > taskList.size()) {
 
             System.out.println("Задачи с таким номером нет в списке!");
@@ -48,14 +50,17 @@ public class ToDoList {
 
         taskNumber--;
 
+        // Перенос задачи из листа задач в лист выполненных задач
         completedList.add(taskList.get(taskNumber));
         taskList.remove(taskList.get(taskNumber));
 
-        for (int i = taskNumber; i < taskList.size(); i++) { // Переприсвоение номеров по порядку в листе задач
+        // Переприсвоение номеров по порядку в листе задач
+        for (int i = taskNumber; i < taskList.size(); i++) {
             taskList.get(i).setTaskNumber(i + 1);
         }
 
-        for (int i = 0; i < completedList.size(); i++) { // Переприсвоение номеров по порядку в листе выполненных задач
+        // Переприсвоение номеров по порядку в листе выполненных задач
+        for (int i = 0; i < completedList.size(); i++) {
             completedList.get(i).setTaskNumber(i + 1);
         }
 
@@ -69,6 +74,7 @@ public class ToDoList {
 
         Integer taskNumber = input.getIndex();
 
+        //Проверка наличия числа в списке задач
         if (taskNumber < 0 || taskNumber > taskList.size()) {
 
             System.out.println("Задачи с таким номером нет в списке!");
@@ -79,6 +85,7 @@ public class ToDoList {
 
         taskList.remove(taskList.get(taskNumber));
 
+        // Переприсвоение номеров по порядку в листе задач
         for (int i = taskNumber; i < taskList.size(); i++) {
             taskList.get(i).setTaskNumber(i + 1);
         }
